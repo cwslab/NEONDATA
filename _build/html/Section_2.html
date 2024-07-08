@@ -1,0 +1,739 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. NEON Utilities Tools &#8212; NEON Tutorial for Data download and processing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Section_2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3: Soil Water Content" href="Section_3.html" />
+    <link rel="prev" title="1: Importing Packages" href="Prerequisite.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">NEON Tutorial for Data download and processing</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Exploring NEON Data Tutorial
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Prerequisite.html">1: Importing Packages</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. NEON Utilities Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_3.html">3: Soil Water Content</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_4.html">4: Soil Temperature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_5.html">5: Soil Carbon Dioxide (CO2)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cwslab/NEONDATA" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cwslab/NEONDATA/issues/new?title=Issue%20on%20page%20%2FSection_2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Section_2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2. NEON Utilities Tools</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-your-download-approach">2.1 Choosing Your Download Approach:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-data-with-zipsbyproduct">2.2 Downloading Data with zipsByProduct():</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-specific-soil-data">2.3 Downloading Specific Soil Data:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organizing-downloaded-data-with-stackbytable">2.4 Organizing Downloaded Data with stackByTable():</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="neon-utilities-tools">
+<h1>2. NEON Utilities Tools<a class="headerlink" href="#neon-utilities-tools" title="Link to this heading">#</a></h1>
+<p>In this section, we’ll explore how to efficiently work with <strong>NEON</strong> data directly from the <a class="reference external" href="http://data.neonscience.org/data-api">NEON API</a> using the powerful tools provided by <code class="docutils literal notranslate"><span class="pre">neonUtilities</span></code>. This approach allows us to seamlessly download and organize data for further analysis.</p>
+<section id="choosing-your-download-approach">
+<h2>2.1 Choosing Your Download Approach:<a class="headerlink" href="#choosing-your-download-approach" title="Link to this heading">#</a></h2>
+<p>The tutorial offers two approaches for working with NEON data:</p>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><strong>Downloading data directly from the NEON API (current focus):</strong> This method retrieves data using Python and neonUtilities. You’ll provide specific details about the data you want.</p></li>
+<li><p><strong>Working with already downloaded data:</strong> If you have NEON data locally, there are alternative methods for processing it <a class="reference external" href="https://www.neonscience.org/resources/learning-hub/tutorials/download-explore-neon-data">here</a>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="downloading-data-with-zipsbyproduct">
+<h2>2.2 Downloading Data with zipsByProduct():<a class="headerlink" href="#downloading-data-with-zipsbyproduct" title="Link to this heading">#</a></h2>
+<p>To begin, we utilize the <code class="docutils literal notranslate"><span class="pre">zipsByProduct()</span></code> function to download specific data products from NEON. This function requires essential details such as the Data Product ID (DPID), date range, site IDs, download package type, file save path, and whether to check download size.</p>
+<p>Here’s a breakdown of its arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dpID</span></code>: The data product identifier (DPID) found on the <a class="reference external" href="http://data.neonscience.org/data-products/explore">NEON</a> Explore Data page.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startdate</span></code>: The start date for data retrieval in YYYY-MM format (e.g., “2020-01”).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enddate</span></code>: The end date for data retrieval in YYYY-MM format (e.g., “2021-12”).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">site</span></code>: A character vector containing 4-letter site IDs (e.g., ‘TALL’). You can use “all” for all sites.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">savepath</span></code>: The local directory where downloaded data will be saved. Adjust the path as needed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">package</span></code>: Choose <code class="docutils literal notranslate"><span class="pre">&quot;basic&quot;</span></code> (default) or <code class="docutils literal notranslate"><span class="pre">&quot;expanded&quot;</span></code> depending on data needs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">check_size</span></code>: Set to <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> (default) to verify download size before proceeding, or <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> to skip this check.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rpy2.rinterface_lib.callbacks</span> <span class="kn">import</span> <span class="n">logger</span> <span class="k">as</span> <span class="n">rpy2_logger</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">rpy2.robjects</span> <span class="kn">import</span> <span class="n">r</span> <span class="k">as</span> <span class="n">base</span>
+<span class="kn">from</span> <span class="nn">rpy2.robjects.packages</span> <span class="kn">import</span> <span class="n">importr</span>
+<span class="c1"># Set logging level to suppress R messages</span>
+<span class="n">rpy2_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+<span class="c1"># Load R&#39;s base, utils, and stats packages</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">importr</span><span class="p">(</span><span class="s1">&#39;base&#39;</span><span class="p">)</span>
+<span class="n">utils</span> <span class="o">=</span> <span class="n">importr</span><span class="p">(</span><span class="s1">&#39;utils&#39;</span><span class="p">)</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">importr</span><span class="p">(</span><span class="s1">&#39;stats&#39;</span><span class="p">)</span>
+<span class="c1"># Importing R packages via rpy2</span>
+<span class="n">neonUtilities</span> <span class="o">=</span> <span class="n">importr</span><span class="p">(</span><span class="s1">&#39;neonUtilities&#39;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;R_HOME&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/Library/Frameworks/R.framework/Resources&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-block alert-info">
+<b>NOTE:</b> Note: Ensure you have the correct DPID and site IDs for the data you intend to download. Adjust the savepath parameter to your desired location.
+</div></section>
+<section id="downloading-specific-soil-data">
+<h2>2.3 Downloading Specific Soil Data:<a class="headerlink" href="#downloading-specific-soil-data" title="Link to this heading">#</a></h2>
+<p>The code examples demonstrate downloading three types of soil data:</p>
+<ul class="simple">
+<li><p><strong>Soil Moisture Content</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neonUtilities</span><span class="o">.</span><span class="n">zipsByProduct</span><span class="p">(</span><span class="n">dpID</span><span class="o">=</span><span class="s1">&#39;DP1.00094.001&#39;</span><span class="p">,</span>
+                             <span class="n">startdate</span><span class="o">=</span><span class="s2">&quot;2017-01&quot;</span><span class="p">,</span>
+                             <span class="n">enddate</span><span class="o">=</span><span class="s2">&quot;2023-12&quot;</span><span class="p">,</span>
+                             <span class="n">site</span><span class="o">=</span><span class="n">base</span><span class="o">.</span><span class="n">c</span><span class="p">(</span><span class="s1">&#39;TALL&#39;</span><span class="p">),</span>
+                             <span class="n">savepath</span><span class="o">=</span><span class="s1">&#39;path&#39;</span><span class="p">,</span>  <span class="c1"># Replace with your path</span>
+                             <span class="n">package</span><span class="o">=</span><span class="s1">&#39;basic&#39;</span><span class="p">,</span>
+                             <span class="n">timeIndex</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+                             <span class="n">check_size</span><span class="o">=</span><span class="s1">&#39;TRUE&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finding available files
+  |======================================================================| 100%
+Provisional data were excluded from available files list. To download provisional data, use input parameter include.provisional=TRUE.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neonUtilities</span><span class="o">.</span><span class="n">zipsByProduct</span><span class="p">(</span><span class="n">dpID</span><span class="o">=</span><span class="s1">&#39;DP1.00094.001&#39;</span><span class="p">,</span>
+                             <span class="n">startdate</span><span class="o">=</span><span class="s2">&quot;2017-01&quot;</span><span class="p">,</span>
+                             <span class="n">enddate</span><span class="o">=</span><span class="s2">&quot;2023-12&quot;</span><span class="p">,</span>
+                             <span class="n">site</span><span class="o">=</span><span class="n">base</span><span class="o">.</span><span class="n">c</span><span class="p">(</span><span class="s1">&#39;TALL&#39;</span><span class="p">),</span>
+                             <span class="n">savepath</span><span class="o">=</span><span class="s1">&#39;path&#39;</span><span class="p">,</span>  <span class="c1"># Replace with your path</span>
+                             <span class="n">package</span><span class="o">=</span><span class="s1">&#39;basic&#39;</span><span class="p">,</span>
+                             <span class="n">timeIndex</span> <span class="o">=</span> <span class="s2">&quot;30&quot;</span><span class="p">,</span>
+                             <span class="n">check_size</span><span class="o">=</span><span class="s1">&#39;TRUE&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finding available files
+  |======================================================================| 100%
+Provisional data were excluded from available files list. To download provisional data, use input parameter include.provisional=TRUE.
+Continuing will download files totaling approximately 494.151871 MB. Do you want to proceed y/n: y
+Downloading 2577 files
+  |======================================================================| 100%
+2577 files successfully downloaded to /Volumes/Thomas/Tutorials/NEON/Data//filesToStack00094
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;rpy2.rinterface_lib.sexp.NULLType object at 0x14bcc10d0&gt; [0]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Soil Temperature</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neonUtilities</span><span class="o">.</span><span class="n">zipsByProduct</span><span class="p">(</span><span class="n">dpID</span><span class="o">=</span><span class="s1">&#39;DP1.00041.001&#39;</span><span class="p">,</span>
+                             <span class="n">startdate</span><span class="o">=</span><span class="s2">&quot;2017-01&quot;</span><span class="p">,</span>
+                             <span class="n">enddate</span><span class="o">=</span><span class="s2">&quot;2023-12&quot;</span><span class="p">,</span>
+                             <span class="n">site</span><span class="o">=</span><span class="n">base</span><span class="o">.</span><span class="n">c</span><span class="p">(</span><span class="s1">&#39;TALL&#39;</span><span class="p">),</span>
+                             <span class="n">savepath</span><span class="o">=</span><span class="s1">&#39;path&#39;</span><span class="p">,</span>  <span class="c1"># Replace with your path</span>
+                             <span class="n">package</span><span class="o">=</span><span class="s1">&#39;basic&#39;</span><span class="p">,</span>
+                             <span class="n">timeIndex</span> <span class="o">=</span> <span class="s2">&quot;30&quot;</span><span class="p">,</span>
+                             <span class="n">check_size</span><span class="o">=</span><span class="s1">&#39;TRUE&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finding available files
+  |======================================================================| 100%
+Provisional data were excluded from available files list. To download provisional data, use input parameter include.provisional=TRUE.
+Continuing will download files totaling approximately 450.134447 MB. Do you want to proceed y/n: y
+Downloading 3207 files
+  |======================================================================| 100%
+3207 files successfully downloaded to /Volumes/Thomas/Tutorials/NEON/Data//filesToStack00041
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;rpy2.rinterface_lib.sexp.NULLType object at 0x14bcc10d0&gt; [0]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Soil Carbon Dioxide (CO2) Concentration</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neonUtilities</span><span class="o">.</span><span class="n">zipsByProduct</span><span class="p">(</span><span class="n">dpID</span><span class="o">=</span><span class="s1">&#39;DP1.00095.001&#39;</span><span class="p">,</span>
+                             <span class="n">startdate</span><span class="o">=</span><span class="s2">&quot;2017-01&quot;</span><span class="p">,</span>
+                             <span class="n">enddate</span><span class="o">=</span><span class="s2">&quot;2023-12&quot;</span><span class="p">,</span>
+                             <span class="n">site</span><span class="o">=</span><span class="n">base</span><span class="o">.</span><span class="n">c</span><span class="p">(</span><span class="s1">&#39;TALL&#39;</span><span class="p">),</span>
+                             <span class="n">savepath</span><span class="o">=</span><span class="s1">&#39;path&#39;</span><span class="p">,</span>  <span class="c1"># Replace with your path</span>
+                             <span class="n">package</span><span class="o">=</span><span class="s1">&#39;basic&#39;</span><span class="p">,</span>
+                             <span class="n">timeIndex</span> <span class="o">=</span> <span class="s2">&quot;30&quot;</span><span class="p">,</span>
+                             <span class="n">check_size</span><span class="o">=</span><span class="s1">&#39;TRUE&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finding available files
+  |======================================================================| 100%
+Provisional data were excluded from available files list. To download provisional data, use input parameter include.provisional=TRUE.
+Continuing will download files totaling approximately 145.83331 MB. Do you want to proceed y/n: y
+Downloading 1079 files
+  |======================================================================| 100%
+1079 files successfully downloaded to /Volumes/Thomas/Tutorials/NEON/Data//filesToStack00095
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;rpy2.rinterface_lib.sexp.NULLType object at 0x14bcc10d0&gt; [0]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="organizing-downloaded-data-with-stackbytable">
+<h2>2.4 Organizing Downloaded Data with stackByTable():<a class="headerlink" href="#organizing-downloaded-data-with-stackbytable" title="Link to this heading">#</a></h2>
+<p>Once data is downloaded, use <code class="docutils literal notranslate"><span class="pre">stackByTable()</span></code> to organize it into a more usable format within your specified save path. This function expects the path to the downloaded data directory as input (e.g., the output directory from <code class="docutils literal notranslate"><span class="pre">zipsByProduct()</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stack Soil Temperature Data</span>
+<span class="n">neonUtilities</span><span class="o">.</span><span class="n">stackByTable</span><span class="p">(</span><span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;path/filesToStack00041&#39;</span><span class="p">)</span>
+<span class="c1"># Stack Soil CO2 Data</span>
+<span class="n">neonUtilities</span><span class="o">.</span><span class="n">stackByTable</span><span class="p">(</span><span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;path/filesToStack00095&#39;</span><span class="p">)</span>
+<span class="c1"># Stack Soil Water Content Data</span>
+<span class="n">neonUtilities</span><span class="o">.</span><span class="n">stackByTable</span><span class="p">(</span><span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;path/filesToStack00094&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  |                                                  | 0 % ~calculating   |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed=00s  
+Stacking operation across a single core.
+Stacking table ST_30_minute
+  |                                                  | 0 % ~calculating   |+                                                 | 1 % ~10s           |++                                                | 2 % ~10s           |++                                                | 3 % ~13s           |+++                                               | 4 % ~12s           |+++                                               | 5 % ~11s           |++++                                              | 6 % ~11s           |++++                                              | 7 % ~11s           |+++++                                             | 8 % ~11s           |+++++                                             | 9 % ~12s           |++++++                                            | 10% ~12s           |++++++                                            | 11% ~11s           |+++++++                                           | 12% ~12s           |+++++++                                           | 13% ~11s           |++++++++                                          | 14% ~11s           |++++++++                                          | 15% ~11s           |+++++++++                                         | 16% ~11s           |+++++++++                                         | 17% ~11s           |++++++++++                                        | 18% ~10s           |++++++++++                                        | 19% ~11s           |+++++++++++                                       | 20% ~10s           |+++++++++++                                       | 21% ~10s           |++++++++++++                                      | 22% ~10s           |++++++++++++                                      | 23% ~09s           |+++++++++++++                                     | 24% ~09s           |+++++++++++++                                     | 26% ~09s           |++++++++++++++                                    | 27% ~09s           |++++++++++++++                                    | 28% ~09s           |+++++++++++++++                                   | 29% ~08s           |+++++++++++++++                                   | 30% ~08s           |++++++++++++++++                                  | 31% ~08s           |++++++++++++++++                                  | 32% ~08s           |+++++++++++++++++                                 | 33% ~08s           |+++++++++++++++++                                 | 34% ~08s           |++++++++++++++++++                                | 35% ~08s           |++++++++++++++++++                                | 36% ~08s           |+++++++++++++++++++                               | 37% ~07s           |+++++++++++++++++++                               | 38% ~07s           |++++++++++++++++++++                              | 39% ~07s           |++++++++++++++++++++                              | 40% ~07s           |+++++++++++++++++++++                             | 41% ~07s           |+++++++++++++++++++++                             | 42% ~07s           |++++++++++++++++++++++                            | 43% ~06s           |++++++++++++++++++++++                            | 44% ~06s           |+++++++++++++++++++++++                           | 45% ~06s           |+++++++++++++++++++++++                           | 46% ~06s           |++++++++++++++++++++++++                          | 47% ~06s           |++++++++++++++++++++++++                          | 48% ~06s           |+++++++++++++++++++++++++                         | 49% ~06s           |+++++++++++++++++++++++++                         | 50% ~06s           |++++++++++++++++++++++++++                        | 51% ~05s           |+++++++++++++++++++++++++++                       | 52% ~05s           |+++++++++++++++++++++++++++                       | 53% ~05s           |++++++++++++++++++++++++++++                      | 54% ~05s           |++++++++++++++++++++++++++++                      | 55% ~05s           |+++++++++++++++++++++++++++++                     | 56% ~05s           |+++++++++++++++++++++++++++++                     | 57% ~05s           |++++++++++++++++++++++++++++++                    | 58% ~05s           |++++++++++++++++++++++++++++++                    | 59% ~05s           |+++++++++++++++++++++++++++++++                   | 60% ~04s           |+++++++++++++++++++++++++++++++                   | 61% ~04s           |++++++++++++++++++++++++++++++++                  | 62% ~04s           |++++++++++++++++++++++++++++++++                  | 63% ~04s           |+++++++++++++++++++++++++++++++++                 | 64% ~04s           |+++++++++++++++++++++++++++++++++                 | 65% ~04s           |++++++++++++++++++++++++++++++++++                | 66% ~04s           |++++++++++++++++++++++++++++++++++                | 67% ~04s           |+++++++++++++++++++++++++++++++++++               | 68% ~03s           |+++++++++++++++++++++++++++++++++++               | 69% ~03s           |++++++++++++++++++++++++++++++++++++              | 70% ~03s           |++++++++++++++++++++++++++++++++++++              | 71% ~03s           |+++++++++++++++++++++++++++++++++++++             | 72% ~03s           |+++++++++++++++++++++++++++++++++++++             | 73% ~03s           |++++++++++++++++++++++++++++++++++++++            | 74% ~03s           |++++++++++++++++++++++++++++++++++++++            | 76% ~03s           |+++++++++++++++++++++++++++++++++++++++           | 77% ~03s           |+++++++++++++++++++++++++++++++++++++++           | 78% ~02s           |++++++++++++++++++++++++++++++++++++++++          | 79% ~02s           |++++++++++++++++++++++++++++++++++++++++          | 80% ~02s           |+++++++++++++++++++++++++++++++++++++++++         | 81% ~02s           |+++++++++++++++++++++++++++++++++++++++++         | 82% ~02s           |++++++++++++++++++++++++++++++++++++++++++        | 83% ~02s           |++++++++++++++++++++++++++++++++++++++++++        | 84% ~02s           |+++++++++++++++++++++++++++++++++++++++++++       | 85% ~02s           |+++++++++++++++++++++++++++++++++++++++++++       | 86% ~02s           |++++++++++++++++++++++++++++++++++++++++++++      | 87% ~01s           |++++++++++++++++++++++++++++++++++++++++++++      | 88% ~01s           |+++++++++++++++++++++++++++++++++++++++++++++     | 89% ~01s           |+++++++++++++++++++++++++++++++++++++++++++++     | 90% ~01s           |++++++++++++++++++++++++++++++++++++++++++++++    | 91% ~01s           |++++++++++++++++++++++++++++++++++++++++++++++    | 92% ~01s           |+++++++++++++++++++++++++++++++++++++++++++++++   | 93% ~01s           |+++++++++++++++++++++++++++++++++++++++++++++++   | 94% ~01s           |++++++++++++++++++++++++++++++++++++++++++++++++  | 95% ~01s           |++++++++++++++++++++++++++++++++++++++++++++++++  | 96% ~00s           |+++++++++++++++++++++++++++++++++++++++++++++++++ | 97% ~00s           |+++++++++++++++++++++++++++++++++++++++++++++++++ | 98% ~00s           |++++++++++++++++++++++++++++++++++++++++++++++++++| 99% ~00s           |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed=11s  
+Merged the most recent publication of sensor position files for each site and saved to /stackedFiles
+Copied the most recent publication of variable definition file to /stackedFiles
+Finished: Stacked 1 data tables and 3 metadata tables!
+Stacking took 16.64224 secs
+All unzipped monthly data folders have been removed.
+  |                                                  | 0 % ~calculating   |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed=00s  
+Stacking operation across a single core.
+Stacking table SCO2C_30_minute
+  |                                                  | 0 % ~calculating   |+                                                 | 1 % ~03s           |++                                                | 2 % ~02s           |++                                                | 3 % ~02s           |+++                                               | 4 % ~03s           |+++                                               | 5 % ~03s           |++++                                              | 6 % ~03s           |++++                                              | 7 % ~03s           |+++++                                             | 8 % ~02s           |+++++                                             | 9 % ~02s           |++++++                                            | 10% ~02s           |++++++                                            | 11% ~02s           |+++++++                                           | 12% ~04s           |+++++++                                           | 13% ~03s           |++++++++                                          | 14% ~03s           |++++++++                                          | 15% ~03s           |+++++++++                                         | 16% ~03s           |+++++++++                                         | 17% ~03s           |++++++++++                                        | 18% ~03s           |++++++++++                                        | 19% ~03s           |+++++++++++                                       | 20% ~03s           |+++++++++++                                       | 21% ~03s           |++++++++++++                                      | 22% ~03s           |++++++++++++                                      | 23% ~03s           |+++++++++++++                                     | 24% ~03s           |+++++++++++++                                     | 26% ~02s           |++++++++++++++                                    | 27% ~02s           |++++++++++++++                                    | 28% ~02s           |+++++++++++++++                                   | 29% ~02s           |+++++++++++++++                                   | 30% ~02s           |++++++++++++++++                                  | 31% ~02s           |++++++++++++++++                                  | 32% ~02s           |+++++++++++++++++                                 | 33% ~02s           |+++++++++++++++++                                 | 34% ~02s           |++++++++++++++++++                                | 35% ~02s           |++++++++++++++++++                                | 36% ~02s           |+++++++++++++++++++                               | 37% ~02s           |+++++++++++++++++++                               | 38% ~02s           |++++++++++++++++++++                              | 39% ~02s           |++++++++++++++++++++                              | 40% ~02s           |+++++++++++++++++++++                             | 41% ~02s           |+++++++++++++++++++++                             | 42% ~02s           |++++++++++++++++++++++                            | 43% ~02s           |++++++++++++++++++++++                            | 44% ~02s           |+++++++++++++++++++++++                           | 45% ~02s           |+++++++++++++++++++++++                           | 46% ~02s           |++++++++++++++++++++++++                          | 47% ~02s           |++++++++++++++++++++++++                          | 48% ~02s           |+++++++++++++++++++++++++                         | 49% ~01s           |+++++++++++++++++++++++++                         | 50% ~01s           |++++++++++++++++++++++++++                        | 51% ~01s           |+++++++++++++++++++++++++++                       | 52% ~01s           |+++++++++++++++++++++++++++                       | 53% ~01s           |++++++++++++++++++++++++++++                      | 54% ~01s           |++++++++++++++++++++++++++++                      | 55% ~01s           |+++++++++++++++++++++++++++++                     | 56% ~01s           |+++++++++++++++++++++++++++++                     | 57% ~01s           |++++++++++++++++++++++++++++++                    | 58% ~01s           |++++++++++++++++++++++++++++++                    | 59% ~01s           |+++++++++++++++++++++++++++++++                   | 60% ~01s           |+++++++++++++++++++++++++++++++                   | 61% ~01s           |++++++++++++++++++++++++++++++++                  | 62% ~01s           |++++++++++++++++++++++++++++++++                  | 63% ~01s           |+++++++++++++++++++++++++++++++++                 | 64% ~01s           |+++++++++++++++++++++++++++++++++                 | 65% ~01s           |++++++++++++++++++++++++++++++++++                | 66% ~01s           |++++++++++++++++++++++++++++++++++                | 67% ~01s           |+++++++++++++++++++++++++++++++++++               | 68% ~01s           |+++++++++++++++++++++++++++++++++++               | 69% ~01s           |++++++++++++++++++++++++++++++++++++              | 70% ~01s           |++++++++++++++++++++++++++++++++++++              | 71% ~01s           |+++++++++++++++++++++++++++++++++++++             | 72% ~01s           |+++++++++++++++++++++++++++++++++++++             | 73% ~01s           |++++++++++++++++++++++++++++++++++++++            | 74% ~01s           |++++++++++++++++++++++++++++++++++++++            | 76% ~01s           |+++++++++++++++++++++++++++++++++++++++           | 77% ~01s           |+++++++++++++++++++++++++++++++++++++++           | 78% ~01s           |++++++++++++++++++++++++++++++++++++++++          | 79% ~01s           |++++++++++++++++++++++++++++++++++++++++          | 80% ~01s           |+++++++++++++++++++++++++++++++++++++++++         | 81% ~01s           |+++++++++++++++++++++++++++++++++++++++++         | 82% ~01s           |++++++++++++++++++++++++++++++++++++++++++        | 83% ~00s           |++++++++++++++++++++++++++++++++++++++++++        | 84% ~00s           |+++++++++++++++++++++++++++++++++++++++++++       | 85% ~00s           |+++++++++++++++++++++++++++++++++++++++++++       | 86% ~00s           |++++++++++++++++++++++++++++++++++++++++++++      | 87% ~00s           |++++++++++++++++++++++++++++++++++++++++++++      | 88% ~00s           |+++++++++++++++++++++++++++++++++++++++++++++     | 89% ~00s           |+++++++++++++++++++++++++++++++++++++++++++++     | 90% ~00s           |++++++++++++++++++++++++++++++++++++++++++++++    | 91% ~00s           |++++++++++++++++++++++++++++++++++++++++++++++    | 92% ~00s           |+++++++++++++++++++++++++++++++++++++++++++++++   | 93% ~00s           |+++++++++++++++++++++++++++++++++++++++++++++++   | 94% ~00s           |++++++++++++++++++++++++++++++++++++++++++++++++  | 95% ~00s           |++++++++++++++++++++++++++++++++++++++++++++++++  | 96% ~00s           |+++++++++++++++++++++++++++++++++++++++++++++++++ | 97% ~00s           |+++++++++++++++++++++++++++++++++++++++++++++++++ | 98% ~00s           |++++++++++++++++++++++++++++++++++++++++++++++++++| 99% ~00s           |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed=03s  
+Merged the most recent publication of sensor position files for each site and saved to /stackedFiles
+Copied the most recent publication of variable definition file to /stackedFiles
+Finished: Stacked 1 data tables and 3 metadata tables!
+Stacking took 4.80769 secs
+All unzipped monthly data folders have been removed.
+  |                                                  | 0 % ~calculating   |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed=00s  
+Stacking operation across a single core.
+Stacking table SWS_30_minute
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  |                                                  | 0 % ~calculating   |+                                                 | 1 % ~08s           |++                                                | 2 % ~08s           |++                                                | 3 % ~08s           |+++                                               | 4 % ~08s           |+++                                               | 5 % ~08s           |++++                                              | 6 % ~07s           |++++                                              | 7 % ~07s           |+++++                                             | 8 % ~07s           |+++++                                             | 9 % ~07s           |++++++                                            | 10% ~07s           |++++++                                            | 11% ~07s           |+++++++                                           | 12% ~07s           |+++++++                                           | 13% ~07s           |++++++++                                          | 14% ~07s           |++++++++                                          | 15% ~07s           |+++++++++                                         | 16% ~06s           |+++++++++                                         | 17% ~06s           |++++++++++                                        | 18% ~06s           |++++++++++                                        | 19% ~06s           |+++++++++++                                       | 20% ~06s           |+++++++++++                                       | 21% ~06s           |++++++++++++                                      | 22% ~06s           |++++++++++++                                      | 23% ~06s           |+++++++++++++                                     | 24% ~06s           |+++++++++++++                                     | 25% ~06s           |++++++++++++++                                    | 26% ~06s           |++++++++++++++                                    | 27% ~06s           |+++++++++++++++                                   | 28% ~06s           |+++++++++++++++                                   | 29% ~06s           |++++++++++++++++                                  | 30% ~05s           |++++++++++++++++                                  | 31% ~05s           |+++++++++++++++++                                 | 32% ~05s           |+++++++++++++++++                                 | 33% ~05s           |++++++++++++++++++                                | 34% ~05s           |++++++++++++++++++                                | 35% ~05s           |+++++++++++++++++++                               | 36% ~05s           |+++++++++++++++++++                               | 37% ~05s           |++++++++++++++++++++                              | 38% ~05s           |++++++++++++++++++++                              | 39% ~05s           |+++++++++++++++++++++                             | 40% ~05s           |+++++++++++++++++++++                             | 41% ~05s           |++++++++++++++++++++++                            | 42% ~05s           |++++++++++++++++++++++                            | 43% ~05s           |+++++++++++++++++++++++                           | 44% ~04s           |+++++++++++++++++++++++                           | 45% ~04s           |++++++++++++++++++++++++                          | 46% ~04s           |++++++++++++++++++++++++                          | 47% ~04s           |+++++++++++++++++++++++++                         | 48% ~04s           |+++++++++++++++++++++++++                         | 49% ~04s           |++++++++++++++++++++++++++                        | 51% ~04s           |++++++++++++++++++++++++++                        | 52% ~04s           |+++++++++++++++++++++++++++                       | 53% ~04s           |+++++++++++++++++++++++++++                       | 54% ~04s           |++++++++++++++++++++++++++++                      | 55% ~04s           |++++++++++++++++++++++++++++                      | 56% ~04s           |+++++++++++++++++++++++++++++                     | 57% ~03s           |+++++++++++++++++++++++++++++                     | 58% ~03s           |++++++++++++++++++++++++++++++                    | 59% ~03s           |++++++++++++++++++++++++++++++                    | 60% ~03s           |+++++++++++++++++++++++++++++++                   | 61% ~03s           |+++++++++++++++++++++++++++++++                   | 62% ~03s           |++++++++++++++++++++++++++++++++                  | 63% ~03s           |++++++++++++++++++++++++++++++++                  | 64% ~03s           |+++++++++++++++++++++++++++++++++                 | 65% ~03s           |+++++++++++++++++++++++++++++++++                 | 66% ~03s           |++++++++++++++++++++++++++++++++++                | 67% ~03s           |++++++++++++++++++++++++++++++++++                | 68% ~03s           |+++++++++++++++++++++++++++++++++++               | 69% ~03s           |+++++++++++++++++++++++++++++++++++               | 70% ~02s           |++++++++++++++++++++++++++++++++++++              | 71% ~02s           |++++++++++++++++++++++++++++++++++++              | 72% ~02s           |+++++++++++++++++++++++++++++++++++++             | 73% ~02s           |+++++++++++++++++++++++++++++++++++++             | 74% ~02s           |++++++++++++++++++++++++++++++++++++++            | 75% ~02s           |++++++++++++++++++++++++++++++++++++++            | 76% ~02s           |+++++++++++++++++++++++++++++++++++++++           | 77% ~02s           |+++++++++++++++++++++++++++++++++++++++           | 78% ~02s           |++++++++++++++++++++++++++++++++++++++++          | 79% ~02s           |++++++++++++++++++++++++++++++++++++++++          | 80% ~02s           |+++++++++++++++++++++++++++++++++++++++++         | 81% ~02s           |+++++++++++++++++++++++++++++++++++++++++         | 82% ~01s           |++++++++++++++++++++++++++++++++++++++++++        | 83% ~01s           |++++++++++++++++++++++++++++++++++++++++++        | 84% ~01s           |+++++++++++++++++++++++++++++++++++++++++++       | 85% ~01s           |+++++++++++++++++++++++++++++++++++++++++++       | 86% ~01s           |++++++++++++++++++++++++++++++++++++++++++++      | 87% ~01s           |++++++++++++++++++++++++++++++++++++++++++++      | 88% ~01s           |+++++++++++++++++++++++++++++++++++++++++++++     | 89% ~01s           |+++++++++++++++++++++++++++++++++++++++++++++     | 90% ~01s           |++++++++++++++++++++++++++++++++++++++++++++++    | 91% ~01s           |++++++++++++++++++++++++++++++++++++++++++++++    | 92% ~01s           |+++++++++++++++++++++++++++++++++++++++++++++++   | 93% ~01s           |+++++++++++++++++++++++++++++++++++++++++++++++   | 94% ~01s           |++++++++++++++++++++++++++++++++++++++++++++++++  | 95% ~00s           |++++++++++++++++++++++++++++++++++++++++++++++++  | 96% ~00s           |+++++++++++++++++++++++++++++++++++++++++++++++++ | 97% ~00s           |+++++++++++++++++++++++++++++++++++++++++++++++++ | 98% ~00s           |++++++++++++++++++++++++++++++++++++++++++++++++++| 99% ~00s           |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed=08s  
+Merged the most recent publication of sensor position files for each site and saved to /stackedFiles
+Copied the most recent publication of variable definition file to /stackedFiles
+Finished: Stacked 1 data tables and 3 metadata tables!
+Stacking took 14.45058 secs
+All unzipped monthly data folders have been removed.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;rpy2.rinterface_lib.sexp.NULLType object at 0x14bcc10d0&gt; [0]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-block alert-info">
+<b>Remember:</b> Adjust the savepath argument in zipsByProduct() to reflect your desired download location. Similarly, replace the example directory names in stackByTable() with the actual names generated during download.
+</div>
+<p>This section demonstrates the process of downloading NEON data directly using the NEON API and organizing it for further analysis. Ensure to execute these steps sequentially to effectively utilize the <code class="docutils literal notranslate"><span class="pre">neonUtilities</span></code> tools for working with NEON data.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Prerequisite.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">1: Importing Packages</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Section_3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3: Soil Water Content</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-your-download-approach">2.1 Choosing Your Download Approach:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-data-with-zipsbyproduct">2.2 Downloading Data with zipsByProduct():</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-specific-soil-data">2.3 Downloading Specific Soil Data:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organizing-downloaded-data-with-stackbytable">2.4 Organizing Downloaded Data with stackByTable():</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The CWS Lab - Auburn University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

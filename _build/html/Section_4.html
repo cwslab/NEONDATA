@@ -1,0 +1,882 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4: Soil Temperature &#8212; NEON Tutorial for Data download and processing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Section_4';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5: Soil Carbon Dioxide (CO2)" href="Section_5.html" />
+    <link rel="prev" title="3: Soil Water Content" href="Section_3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">NEON Tutorial for Data download and processing</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Exploring NEON Data Tutorial
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Prerequisite.html">1: Importing Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_2.html">2. NEON Utilities Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_3.html">3: Soil Water Content</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4: Soil Temperature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_5.html">5: Soil Carbon Dioxide (CO2)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cwslab/NEONDATA" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cwslab/NEONDATA/issues/new?title=Issue%20on%20page%20%2FSection_4.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Section_4.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>4: Soil Temperature</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="soil-temperature">
+<h1>4: Soil Temperature<a class="headerlink" href="#soil-temperature" title="Link to this heading">#</a></h1>
+<p>Soil temperature is a fundamental metric in ecological studies, affecting vital ecological processes such as biogeochemical cycling, decomposition rates, and root and soil biota activity. Additionally, it plays a significant role in the hydrological cycle by determining the state of soil water, whether it is liquid or solid.</p>
+<p>The NEON Soil Temperature dataset provides information about soil temperature variations at different depths below the soil surface, ranging from approximately 2 cm to 200 cm (up to 300 cm at Alaskan sites). This dataset offers 1-minute and 30-minute average measurements, allowing researchers to observe temporal trends and patterns with high granularity.</p>
+<p>Throughout this section, we will guide you through processing soil temperature data downloaded in the earlier section of this tutorial. Here, we will guide you through preprocessing, visualization, and analysis techniques, empowering you to derive meaningful insights from the NEON soil temperature dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reading the Downloaded and unzipped files</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;path/filesToStack00041/stackedFiles/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;ST_30_minute.csv&#39;,
+ &#39;variables_00041.csv&#39;,
+ &#39;readme_00041.txt&#39;,
+ &#39;citation_00041_RELEASE-2024.txt&#39;,
+ &#39;sensor_positions_00041.csv&#39;,
+ &#39;issueLog_00041.csv&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">ST_30_Minute</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;path/filesToStack00041/stackedFiles/ST_30_minute.csv&#39;</span><span class="p">)</span>
+<span class="n">ST_30_Minute</span><span class="p">[</span><span class="s1">&#39;startDateTime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">ST_30_Minute</span><span class="p">[</span><span class="s1">&#39;startDateTime&#39;</span><span class="p">])</span>
+<span class="n">ST_30_Minute</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;startDateTime&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ST_30_Minute</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;domainID&#39;, &#39;siteID&#39;, &#39;horizontalPosition&#39;, &#39;verticalPosition&#39;,
+       &#39;endDateTime&#39;, &#39;soilTempMean&#39;, &#39;soilTempMinimum&#39;, &#39;soilTempMaximum&#39;,
+       &#39;soilTempVariance&#39;, &#39;soilTempNumPts&#39;, &#39;soilTempExpUncert&#39;,
+       &#39;soilTempStdErMean&#39;, &#39;finalQF&#39;, &#39;publicationDate&#39;, &#39;release&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns_of_interest</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;domainID&#39;</span><span class="p">,</span> <span class="s1">&#39;siteID&#39;</span><span class="p">,</span> <span class="s1">&#39;horizontalPosition&#39;</span><span class="p">,</span> <span class="s1">&#39;verticalPosition&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;soilTempMean&#39;</span><span class="p">,</span> <span class="s1">&#39;soilTempMinimum&#39;</span><span class="p">,</span> <span class="s1">&#39;soilTempMaximum&#39;</span><span class="p">,</span><span class="s1">&#39;finalQF&#39;</span><span class="p">]</span>
+<span class="n">st_df</span> <span class="o">=</span> <span class="n">ST_30_Minute</span><span class="p">[</span><span class="n">columns_of_interest</span><span class="p">]</span>
+<span class="n">df_t</span> <span class="o">=</span> <span class="n">st_df</span><span class="p">[(</span><span class="n">st_df</span><span class="p">[</span><span class="s1">&#39;finalQF&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)]</span>
+<span class="c1"># Group by date and verticalPosition, then aggregate using mean for mean_cols and first for first_cols</span>
+<span class="n">daily_t</span> <span class="o">=</span> <span class="n">df_t</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">df_t</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="s1">&#39;verticalPosition&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="p">{</span><span class="s1">&#39;domainID&#39;</span><span class="p">:</span> <span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="s1">&#39;siteID&#39;</span><span class="p">:</span> <span class="s1">&#39;first&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;soilTempMean&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;soilTempMinimum&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;soilTempMaximum&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Reset index to make date and verticalPosition regular columns</span>
+<span class="n">daily_t</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Rename level_0 to Date</span>
+<span class="n">daily_t</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;level_0&#39;</span><span class="p">:</span> <span class="s1">&#39;Date&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Set Date column as index</span>
+<span class="n">daily_t</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sensorp</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;path/filesToStack00041/stackedFiles/sensor_positions_00041.csv&#39;</span><span class="p">)</span>
+<span class="c1"># Selecting subset of data</span>
+<span class="n">coi</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;siteID&#39;</span><span class="p">,</span> <span class="s1">&#39;HOR.VER&#39;</span><span class="p">,</span> <span class="s1">&#39;xOffset&#39;</span><span class="p">,</span> <span class="s1">&#39;yOffset&#39;</span><span class="p">,</span> <span class="s1">&#39;zOffset&#39;</span><span class="p">]</span>
+<span class="n">sensor_l</span> <span class="o">=</span> <span class="n">sensorp</span><span class="p">[</span><span class="n">coi</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># Ensure to make a copy</span>
+
+<span class="c1"># Convert the column to string type</span>
+<span class="n">sensor_l</span><span class="p">[</span><span class="s1">&#39;HOR.VER&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sensor_l</span><span class="p">[</span><span class="s1">&#39;HOR.VER&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="c1"># Splitting the column and creating two new columns</span>
+<span class="n">sensor_l</span><span class="p">[[</span><span class="s1">&#39;horizontalPosition&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;verticalPosition&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">sensor_l</span><span class="p">[</span><span class="s1">&#39;HOR.VER&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Convert the values back to numeric</span>
+<span class="n">sensor_l</span><span class="p">[</span><span class="s1">&#39;horizontalPosition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">sensor_l</span><span class="p">[</span><span class="s1">&#39;horizontalPosition&#39;</span><span class="p">])</span>
+<span class="n">sensor_l</span><span class="p">[</span><span class="s1">&#39;verticalPosition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">sensor_l</span><span class="p">[</span><span class="s1">&#39;verticalPosition&#39;</span><span class="p">])</span>
+
+<span class="c1"># Dropping the original column</span>
+<span class="n">sensor_l</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;HOR.VER&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sensor_l</span><span class="p">[</span><span class="s1">&#39;zOffset&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.02, -0.06, -0.16, -0.26, -0.56, -0.86, -1.12, -1.56, -1.96])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating a new DataFrame to store the result</span>
+<span class="n">plot_T</span> <span class="o">=</span> <span class="n">daily_t</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Creating a dictionary to map sensor depth values based on horizontal and vertical positions</span>
+<span class="n">sd</span> <span class="o">=</span> <span class="p">{(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;verticalPosition&#39;</span><span class="p">]):</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;zOffset&#39;</span><span class="p">]</span> 
+                    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">sensor_l</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()}</span>
+
+<span class="c1"># Function to populate soilDepth column</span>
+<span class="k">def</span> <span class="nf">psensor_depth</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">sd</span><span class="p">):</span>
+    <span class="n">vertical_pos</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;verticalPosition&#39;</span><span class="p">]</span>
+    <span class="n">sd_value</span> <span class="o">=</span> <span class="n">sd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">vertical_pos</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sd_value</span>
+
+<span class="c1"># Applying the function to populate soilDepth column</span>
+<span class="n">plot_T</span><span class="p">[</span><span class="s1">&#39;zOffset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">plot_T</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">psensor_depth</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">sd</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_T</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>verticalPosition</th>
+      <th>domainID</th>
+      <th>siteID</th>
+      <th>soilTempMean</th>
+      <th>soilTempMinimum</th>
+      <th>soilTempMaximum</th>
+      <th>zOffset</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-07-13</th>
+      <td>501</td>
+      <td>D08</td>
+      <td>TALL</td>
+      <td>26.431933</td>
+      <td>26.262250</td>
+      <td>26.601667</td>
+      <td>-0.02</td>
+    </tr>
+    <tr>
+      <th>2017-07-13</th>
+      <td>502</td>
+      <td>D08</td>
+      <td>TALL</td>
+      <td>26.130200</td>
+      <td>26.009479</td>
+      <td>26.249046</td>
+      <td>-0.06</td>
+    </tr>
+    <tr>
+      <th>2017-07-13</th>
+      <td>503</td>
+      <td>D08</td>
+      <td>TALL</td>
+      <td>25.530112</td>
+      <td>25.467883</td>
+      <td>25.592025</td>
+      <td>-0.16</td>
+    </tr>
+    <tr>
+      <th>2017-07-13</th>
+      <td>504</td>
+      <td>D08</td>
+      <td>TALL</td>
+      <td>25.053558</td>
+      <td>25.020608</td>
+      <td>25.086546</td>
+      <td>-0.26</td>
+    </tr>
+    <tr>
+      <th>2017-07-13</th>
+      <td>505</td>
+      <td>D08</td>
+      <td>TALL</td>
+      <td>24.051950</td>
+      <td>24.046342</td>
+      <td>24.057625</td>
+      <td>-0.56</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">plot_T</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">plot_T</span><span class="p">[</span><span class="s1">&#39;zOffset&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">depth_values</span> <span class="o">=</span> <span class="n">plot_T</span><span class="p">[</span><span class="s1">&#39;zOffset&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="n">plot_T</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Initialize 2D array to store VSWCMean values</span>
+<span class="n">plot_var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">depth_values</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">dates</span><span class="p">)))</span>
+<span class="n">depth_values</span> <span class="o">=</span> <span class="n">plot_T</span><span class="p">[</span><span class="s1">&#39;zOffset&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="n">plot_T</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Iterate over unique depth values</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">depth_value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">depth_values</span><span class="p">):</span>
+    <span class="c1"># Filter DataFrame for the current depth value</span>
+    <span class="n">filtered_data</span> <span class="o">=</span> <span class="n">plot_T</span><span class="p">[</span><span class="n">plot_T</span><span class="p">[</span><span class="s1">&#39;zOffset&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">depth_value</span><span class="p">]</span>
+    <span class="c1"># Iterate over unique dates</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">date</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dates</span><span class="p">):</span>
+        <span class="c1"># Check if the date exists in the DataFrame</span>
+        <span class="k">if</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">filtered_data</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+            <span class="c1"># Get soil temperature values for the current depth value and date</span>
+            <span class="n">st</span> <span class="o">=</span> <span class="n">filtered_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">date</span><span class="p">,</span> <span class="s1">&#39;soilTempMean&#39;</span><span class="p">]</span>
+            <span class="c1"># Calculate the mean of temperature values</span>
+            <span class="n">st_mean</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="k">else</span> <span class="n">st</span>
+            <span class="c1"># Store mean temperature value in 2D array</span>
+            <span class="n">plot_var</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">st_mean</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">Y</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">plot_var</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9, 2153) (9, 2153) (9, 2153)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">colors</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="k">def</span> <span class="nf">truncate_colormap</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">maxval</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">new_cmap</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span>
+        <span class="s1">&#39;trunc(</span><span class="si">{n}</span><span class="s1">,</span><span class="si">{a:.2f}</span><span class="s1">,</span><span class="si">{b:.2f}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">cmap</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">minval</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">maxval</span><span class="p">),</span>
+        <span class="n">cmap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">minval</span><span class="p">,</span> <span class="n">maxval</span><span class="p">,</span> <span class="n">n</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">new_cmap</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;YlOrRd&#39;</span><span class="p">)</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">truncate_colormap</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>  <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">cs</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">plot_var</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span><span class="n">extend</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Soil Depth [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Period&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span> <span class="p">(</span><span class="s1">&#39;Time-Series of Soil Temperature Profile at TALL&#39;</span><span class="p">,</span><span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cs</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">y_label</span> <span class="o">=</span> <span class="s1">&#39;Soil Temperature (0C)&#39;</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">y_label</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d44d82f94edd5f3da590f04711e983506b6a880f2784d688e4c69a2f22241608.png" src="_images/d44d82f94edd5f3da590f04711e983506b6a880f2784d688e4c69a2f22241608.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the index to a datetime-like object</span>
+<span class="n">plot_T</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">plot_T</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="c1"># Making a time series plot for soil temperature at 6 cm</span>
+<span class="n">st_6cm</span> <span class="o">=</span> <span class="n">plot_T</span><span class="p">[</span><span class="n">plot_T</span><span class="p">[</span><span class="s1">&#39;verticalPosition&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;502&#39;</span><span class="p">)]</span>
+<span class="n">daily_st</span> <span class="o">=</span> <span class="n">st_6cm</span><span class="p">[</span><span class="s1">&#39;soilTempMean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">daily_st</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">daily_st</span><span class="p">[</span><span class="s1">&#39;soilTempMean&#39;</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Depth at 6 cm&#39;</span><span class="p">)</span>
+
+<span class="c1"># Adding labels and legend</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Soil Temperature (0C)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Soil Temperature at 6 cm Depth&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2c135df57af527aa686628fc9e7e3a1761abf8471593823d88abf7f3e9255a36.png" src="_images/2c135df57af527aa686628fc9e7e3a1761abf8471593823d88abf7f3e9255a36.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Group by date and vertical position, and aggregate by taking the mean over horizontal position</span>
+<span class="n">data_plots</span> <span class="o">=</span> <span class="n">plot_T</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">plot_T</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;verticalPosition&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+    <span class="s1">&#39;soilTempMean&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;soilTempMinimum&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;soilTempMaximum&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;zOffset&#39;</span><span class="p">:</span> <span class="s1">&#39;first&#39;</span>
+<span class="p">})</span>
+
+<span class="c1"># Reset index to make &#39;verticalPosition&#39; and &#39;Date&#39; regular columns</span>
+<span class="n">data_plots</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;soilTempMean&#39;</span><span class="p">,</span> <span class="s1">&#39;zOffset&#39;</span><span class="p">]</span>
+<span class="n">df_1</span> <span class="o">=</span> <span class="n">data_plots</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">df_1</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;TALL_daily_SoilTemp.csv&#39;</span><span class="p">)</span>
+<span class="n">df_1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>soilTempMean</th>
+      <th>zOffset</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2017-07-13</td>
+      <td>26.431933</td>
+      <td>-0.02</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2017-07-13</td>
+      <td>26.130200</td>
+      <td>-0.06</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2017-07-13</td>
+      <td>25.530112</td>
+      <td>-0.16</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2017-07-13</td>
+      <td>25.053558</td>
+      <td>-0.26</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2017-07-13</td>
+      <td>24.051950</td>
+      <td>-0.56</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Section_3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">3: Soil Water Content</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Section_5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">5: Soil Carbon Dioxide (CO2)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The CWS Lab - Auburn University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
